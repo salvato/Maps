@@ -93,19 +93,24 @@ MainWindow::MainWindow(QWidget *parent)
 //          Defines an extra layer to display on the map, if any.
 //          The value can be one of the following: none (default), transit, traffic, bicycling or terrain.
 
-    QString sUrl = QString("https://maps.google.com/maps/@?api=1&map_action=map");
     double latitude  = 38.221245;
     double longitude = 15.560085;
     int zoom = 21;
-    QString sBaseMap= "satellite";
 
-    QString sParameters= QString("&center=%1,%2&zoom=%3&basemap=%4")
-                                  .arg(latitude,12)
-                                  .arg(longitude,12)
+//    QString sBaseMap= "satellite";
+//    QString sUrl = QString("https://maps.google.com/maps/@?api=1&map_action=map");
+//    QString sParameters= QString("&center=%1,%2&zoom=%3&basemap=%4")
+//                                  .arg(latitude,12)
+//                                  .arg(longitude,12)
+//                                  .arg(zoom)
+//                                  .arg(sBaseMap);
+
+    QString sUrl = QString("https://www.openstreetmap.org/search");
+    QString sParameters = QString("?query=#map=%1/%2/%3")
                                   .arg(zoom)
-                                  .arg(sBaseMap);
+                                  .arg(latitude)
+                                  .arg(longitude);
     sUrl+= sParameters;
-
     page->load(sUrl);
 }
 
