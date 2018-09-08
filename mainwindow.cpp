@@ -95,21 +95,25 @@ MainWindow::MainWindow(QWidget *parent)
 
     double latitude  = 38.221245;
     double longitude = 15.560085;
-    int zoom = 21;
+    int     zoom     = 21;
 
-//    QString sBaseMap= "satellite";
-//    QString sUrl = QString("https://maps.google.com/maps/@?api=1&map_action=map");
-//    QString sParameters= QString("&center=%1,%2&zoom=%3&basemap=%4")
-//                                  .arg(latitude,12)
-//                                  .arg(longitude,12)
-//                                  .arg(zoom)
-//                                  .arg(sBaseMap);
-
-    QString sUrl = QString("https://www.openstreetmap.org/search");
-    QString sParameters = QString("?query=#map=%1/%2/%3")
-                                  .arg(zoom)
-                                  .arg(latitude)
-                                  .arg(longitude);
+#ifdef GOOGLE
+    sBaseMap= "satellite";
+    sUrl = QString("https://maps.google.com/maps/@?api=1&map_action=map");
+    sParameters= QString("&center=%1,%2&zoom=%3&basemap=%4")
+                         .arg(latitude,  16)
+                         .arg(longitude, 16)
+                         .arg(zoom)
+                         .arg(sBaseMap);
+#else
+    sBaseMap= "map";
+    sUrl = QString("https://www.openstreetmap.org/search");
+    sParameters = QString("?query=#%1=%2/%3/%4/")
+                          .arg(sBaseMap)
+                          .arg(zoom)
+                          .arg(latitude,  16)
+                          .arg(longitude, 16);
+#endif
     sUrl+= sParameters;
     page->load(sUrl);
 }

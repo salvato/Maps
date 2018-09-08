@@ -64,6 +64,9 @@ public slots:
 
 private:
     QWebEngineView *m_view;
+    QString sBaseMap;
+    QString sUrl;
+    QString sParameters;
 };
 
 #endif // MAINWINDOW_H
