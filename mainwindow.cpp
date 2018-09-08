@@ -52,6 +52,8 @@
 
 #include <QMessageBox>
 
+//#define GOOGLEMAP
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_view(new QWebEngineView(this))
@@ -95,9 +97,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     double latitude  = 38.221245;
     double longitude = 15.560085;
-    int     zoom     = 21;
+    int    zoom      = 20;
 
-#ifdef GOOGLE
+#ifdef GOOGLEMAP
     sBaseMap= "satellite";
     sUrl = QString("https://maps.google.com/maps/@?api=1&map_action=map");
     sParameters= QString("&center=%1,%2&zoom=%3&basemap=%4")
